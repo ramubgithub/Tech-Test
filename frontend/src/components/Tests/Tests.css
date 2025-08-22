@@ -1,0 +1,36 @@
+.testsContainer {
+    display: flex;
+    background-color: #509ae9;
+    padding: 20px;
+    border-radius: 0px 6px 6px 6px;
+    justify-content: space-between;
+    width: 600px;
+}
+
+.testGroup {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 250px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease;
+    gap: 7px;
+    padding: 5px 10px;
+}
+
+.testGroup:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.9);
+}
+
+.strtBtn {
+    align-self: flex-end;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    border-radius: 6px;
+    color: white;
+    background-color: #007bff;
+}

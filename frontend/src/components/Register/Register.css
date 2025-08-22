@@ -1,0 +1,73 @@
+.signupMainContainer {
+    background-color: rgb(225, 235, 235);
+    height: 97vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signupContainer {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+    padding: 5px 35px 25px 25px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.inputGroup {
+    position: relative;
+    width: 100%;
+}
+
+.registerInputs {
+    width: 100%;
+    padding-left: 9px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.registerInputs:focus {
+    border-color: #007bff;
+    outline: none;
+    padding-left: 9px;
+}
+
+.registerLabels {
+    position: absolute;
+    top: 25%;
+    left: 9px;
+    transition: top 0.3s ease-in-out;
+}
+
+.registerInputs:focus + label,
+.registerInputs:not(:placeholder-shown) + label {
+    left: 9px;
+    top: -10px;
+    background-color: white;
+}
+
+.signupBtn {
+    width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    background-color: rgb(27, 100, 173);
+    margin: 0 auto;
+}
+
+.signupBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 426px) {
+    .signupContainer {
+        width: 250px;
+    }
+}

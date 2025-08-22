@@ -1,0 +1,32 @@
+.homeContainer {
+    display: flex;
+    gap: 5px;
+}
+.homeBtn {
+    height: 40px;
+    background-color: white;
+    border: 1px solid #509ae9;
+    border-bottom: none;
+    border-radius: 5px 5px 0px 0px;
+    cursor: pointer;
+    width: 80px;
+}
+
+.logoutBtn {
+    background-color: #f56565;
+    color: white;
+}
+
+.logoutBtn:hover {
+    background-color: #c53030;
+}
+
+.testBtn {
+    background-color: #509ae9;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.resultBtn {
+    background-color: #509ae9;
+    border-radius: 5px 5px 0px 0px;
+}

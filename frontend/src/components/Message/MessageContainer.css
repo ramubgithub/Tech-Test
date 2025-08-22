@@ -1,0 +1,28 @@
+#msgBox {
+    position: fixed;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: -350px;
+    border-radius: 8px;
+    width: 300px;
+    z-index: 1000;
+    opacity: 0;
+    transition: right 0.3s ease-in-out;
+    padding: 15px 10px;
+    color: white;
+}
+
+#msgBox.success {
+    background-color: green;
+}
+
+#msgBox.error {
+    background-color: red;
+}
+
+#msgBox.show {
+    right: 20px;
+    opacity: 1;
+}

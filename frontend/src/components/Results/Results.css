@@ -1,0 +1,95 @@
+.results-container {
+  font-family: Arial, sans-serif;
+  max-width: 70vw;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  background-color: #509ae9;
+  border-radius: 0px 10px 10px 10px;
+  padding: 20px;
+}
+
+.stack-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stack-buttons button {
+  background: #f0f0f0;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.stack-buttons button:hover {
+  background: #ddd;
+}
+
+.stack-buttons .active {
+  background: #4caf50;
+  color: white;
+}
+
+.results-table {
+  text-align: center;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.results-header,
+.results-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 12px 15px;
+}
+
+.results-header {
+  background: #4caf50;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+}
+
+.results-row:nth-child(odd) {
+  background: #ccc;
+}
+
+.results-row:nth-child(even) {
+  background: #ffffff;
+}
+
+.results-row span {
+  text-align: center;
+  font-size: 16px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 8px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.pagination button:hover {
+  background: #eee;
+}
+
+.pagination .active {
+  background: #4caf50;
+  color: white;
+  border: none;
+}

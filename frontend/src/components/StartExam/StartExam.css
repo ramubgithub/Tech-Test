@@ -1,0 +1,150 @@
+.wholeExamContainer {
+    border: 3px solid #ccc;
+    display: flex;
+    height: 96vh;
+    flex-direction: column;
+    border-radius: 10px;
+    padding:0px 9px;
+}
+
+.timerContainer {
+    border: 1px solid #ccc;
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-self: center;
+    margin: 5px 0px;
+    align-items: center;
+}
+
+.timerImg {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.examMainContainer {
+    display: flex;
+    height: 85vh;
+}
+
+.question {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.questionContainer {
+    width: 70vw;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 7px 0px 0px 7px;
+    border-right: 3px solid red;
+}
+
+.questionBtn {
+    display: grid;
+    margin: 15px 25px;
+    grid-template-columns: repeat(5, auto);
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.selectOptionContainer {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;    
+}
+
+.selectOptionLabel {
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    padding: 5px;
+    cursor: pointer;
+    white-space: normal;
+    min-height: 45px;
+}
+
+.selectOptionBtn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sectionContainer {
+    width: 30vw;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-left: none;
+    border-radius: 0px 7px 7px 0px;
+}
+
+.Btns {
+    font-size: 15px;
+    padding: 6px 15px;
+    cursor: pointer;
+    border: none;
+    background-color: blue;
+    border-radius: 4px;
+    color: white;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.2;
+}
+
+.clearBtn {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+    display: block;
+    text-align: right;
+    margin: 10px 0px;
+}
+
+.selectQuestionBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 0.5px solid grey;
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.setSelectedColor {
+    background-color: rgb(92, 181, 92);
+}
+
+.setCurrentQuestion {
+    border: 2px solid blue;
+}
+
+.sectionCategoryContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sectionCategorySub {
+    display: flex;
+    align-items: center;
+}
+
+.sectionCategorySub:nth-child(1) .sectionCategory {
+    background-color: rgba(0, 0, 0, 0.1);
+
+}
+
+.sectionCategorySub:nth-child(2) .sectionCategory {
+    background-color: rgb(92, 181, 92);
+}
+
+.sectionCategory {
+    border: 1px solid #ccc;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
