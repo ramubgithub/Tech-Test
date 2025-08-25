@@ -49,7 +49,6 @@ const Login = async(req, res) => {
             httpOnly: true,
             sameSite: "None",
             secure: isProduction,
-            domain: ".onrender.com",
             maxAge: 60 * 60 * 1000
         })
         res.status(200).json({message: "Login successful!"});
@@ -63,8 +62,7 @@ const Logout = (req, res) => {
     res.clearCookie("token", {
         httpOnly: true,
         sameSite: "None",
-        secure: isProduction,
-        domain: ".onrender.com"
+        secure: isProduction
     });
 
     res.status(200).json({message: "Successfully logged out!"});
