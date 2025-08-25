@@ -2,6 +2,8 @@ const { User, SubmittedData } = require('../models/allModels.js');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const Credentials = async(req, res) => {
     const { email, password } = req.body;
 
@@ -46,7 +48,8 @@ const Login = async(req, res) => {
         res.cookie("token", token, {
             httpOnly: true,
             sameSite: "None",
-            secure: true,
+            secure: isProduction,
+            domain: ".onrender.com",
             maxAge: 60 * 60 * 1000
         })
         res.status(200).json({message: "Login successful!"});
@@ -60,7 +63,8 @@ const Logout = (req, res) => {
     res.clearCookie("token", {
         httpOnly: true,
         sameSite: "None",
-        secure: true
+        secure: isProduction,
+        domain: ".onrender.com"
     });
 
     res.status(200).json({message: "Successfully logged out!"});
