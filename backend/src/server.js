@@ -16,8 +16,11 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors({
     credentials: true,
     origin: process.env.FRONTEND_URL,
-    methods: ["GET", "POST"]
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
+app.options("*", cors());
 
 mongoose.connect(process.env.MONGO_URI, {
     family: 4
