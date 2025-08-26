@@ -46,9 +46,6 @@ const Login = async(req, res) => {
         }
         const token = jwt.sign({ email }, key, { expiresIn: "1h" });
         res.cookie("token", token, {
-            httpOnly: true,
-            sameSite: "None",
-            secure: isProduction,
             maxAge: 60 * 60 * 1000
         })
         res.status(200).json({message: "Login successful!"});
@@ -59,11 +56,7 @@ const Login = async(req, res) => {
 }
 
 const Logout = (req, res) => {
-    res.clearCookie("token", {
-        httpOnly: true,
-        sameSite: "None",
-        secure: isProduction
-    });
+    res.clearCookie("token");
 
     res.status(200).json({message: "Successfully logged out!"});
 }
