@@ -46,9 +46,11 @@ const Login = async(req, res) => {
         }
         const token = jwt.sign({ email }, key, { expiresIn: "1h" });
         res.cookie("token", token, {
+            secure: true,
+            sameSite: "None",
             maxAge: 60 * 60 * 1000
         })
-        res.status(200).json({message: "Login successful!"});
+        res.status(200).json({message: "Login successful!", data: token});
     }
     catch(err) {
         res.status(500).json({message: "Internal server error..."});
@@ -56,13 +58,17 @@ const Login = async(req, res) => {
 }
 
 const Logout = (req, res) => {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+        secure: true,
+        sameSite: "None",
+    });
 
     res.status(200).json({message: "Successfully logged out!"});
 }
 
 const authenticateUser = (req, res) => {
     const token = req.cookies?.token;
+    console.log(token);
     const key = process.env.SECRETKEY;
 
     if(!token) {
