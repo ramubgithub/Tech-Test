@@ -19,7 +19,7 @@ function Login() {
                 dispatch(showMessage({msg: "All fields are required!", isSuccess: false}));
                 return;
             }
-            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`,
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`,
                 {
                     email,
                     password
@@ -31,6 +31,7 @@ function Login() {
                     withCredentials: true
                 }
             );
+            localStorage.setItem("token", response.data.token);
 
             dispatch(showMsg({msg: "Login successful!", isSuccess: true}));
             setTimeout(() => {

@@ -4,8 +4,7 @@ const router = express.Router();
 
 router.post('/register', Credentials);
 router.post('/login', Login);
-router.get('/authenticate', authenticateUser);
-router.post('/logout', Logout);
+router.post('/authenticate', authenticateUser);
 router.post('/submitdetails', ExamSubmission);
 router.post('/getdetails', GetSubmitData);
 

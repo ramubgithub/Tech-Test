@@ -20,15 +20,17 @@ function Home() {
     useEffect(() => {
       const checkAuthUser = async() => {
         try {
-          await axios.get(`${import.meta.env.VITE_BACKEND_URL}/authenticate`,
+          const token = localStorage.getItem("token");
+          await axios.post(`${import.meta.env.VITE_BACKEND_URL}/authenticate`,
             {
-              withCredentials: true
+              token
             }
           );
           setAuthorized(true);
         }
         catch(err) {
           if(err.response?.status === 401) {
+            localStorage.removeItem("token");
             navigate("/login");
             return;
           }
@@ -70,19 +72,12 @@ function Home() {
     }
 
     const handleLogout = async() => {
-      try {
-        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/logout`,{}, {
-          withCredentials: true
-        });
-        dispatch(showMsg({msg: "Successfully Logged Out!", isSuccess: true}));
-        setTimeout(() => {
-          dispatch(hideMsg());
-          navigate("/");
-        }, 3000);
-      }
-      catch(err) {
-        dispatch(showMessage({msg: "Internal server error...", isSuccess: false}));
-      }
+      localStorage.removeItem("token");
+      dispatch(showMsg({msg: "Successfully Logged Out!", isSuccess: true}));
+      setTimeout(() => {
+        dispatch(hideMsg());
+        navigate("/");
+      }, 3000);
     }
   return (
     <>

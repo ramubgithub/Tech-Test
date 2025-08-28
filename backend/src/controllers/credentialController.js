@@ -45,30 +45,15 @@ const Login = async(req, res) => {
             return res.status(401).json({message: "Incorrect Password. Please try again!"});
         }
         const token = jwt.sign({ email }, key, { expiresIn: "1h" });
-        res.cookie("token", token, {
-            secure: true,
-            sameSite: "None",
-            maxAge: 60 * 60 * 1000
-        })
-        res.status(200).json({message: "Login successful!", data: token});
+        res.status(200).json({message: "Login successful!", token});
     }
     catch(err) {
         res.status(500).json({message: "Internal server error..."});
     }
 }
 
-const Logout = (req, res) => {
-    res.clearCookie("token", {
-        secure: true,
-        sameSite: "None",
-    });
-
-    res.status(200).json({message: "Successfully logged out!"});
-}
-
 const authenticateUser = (req, res) => {
-    const token = req.cookies?.token;
-    console.log(token);
+    const { token } = req.body;
     const key = process.env.SECRETKEY;
 
     if(!token) {
@@ -123,4 +108,4 @@ GetSubmitData = async (req, res) => {
   }
 };
 
-module.exports = { Credentials, Login, Logout, authenticateUser, ExamSubmission, GetSubmitData }
+module.exports = { Credentials, Login, authenticateUser, ExamSubmission, GetSubmitData }

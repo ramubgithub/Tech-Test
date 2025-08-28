@@ -16,15 +16,17 @@ function StartExam() {
   useEffect(() => {
       const checkAuthUser = async() => {
         try {
+          const token = localStorage.getItem("token");
           await axios.get(`${import.meta.env.VITE_BACKEND_URL}/authenticate`,
             {
-              withCredentials: true
+              token
             }
           );
           setAuthorized(true);
         }
         catch(err) {
           if(err.response?.status === 401) {
+            localStorage.removeItem("token");
             navigate("/login");
             return;
           }
