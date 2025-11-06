@@ -17,7 +17,7 @@ function StartExam() {
       const checkAuthUser = async() => {
         try {
           const token = localStorage.getItem("token");
-          await axios.get(`${import.meta.env.VITE_BACKEND_URL}/authenticate`,
+          await axios.post(`${import.meta.env.VITE_BACKEND_URL}/authenticate`,
             {
               token
             }
