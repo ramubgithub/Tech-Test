@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './StartExam.css'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
@@ -48,7 +48,7 @@ function StartExam() {
       dispatch(resetExam());
       localStorage.removeItem("examState");
       localStorage.removeItem("examTimer");
-      dispatch(showMessage({msg: "Submit details added successfully!", isSuccess: true}));
+      dispatch(showMessage({msg: "Answers submitted successfully!", isSuccess: true}));
       navigate("/tests");
     }
   }, [navigate]);
@@ -59,7 +59,7 @@ function StartExam() {
           {stackId, answers},
           {headers: {"Content-Type":"application/json"}}
         );
-        dispatch(showMessage({msg: "Submit details added successfully!", isSuccess: true}));
+        dispatch(showMessage({msg: "Answers submitted successfully!", isSuccess: true}));
       }
       catch(err) {
         dispatch(showMessage({msg: "Internal server error.", isSuccess: false}));
@@ -77,7 +77,6 @@ function StartExam() {
           stackId: stackId,
           answers: answers
         };
-        console.log(payload);
         const blob = new Blob([JSON.stringify(payload)], {type: "application/json"});
         navigator.sendBeacon(`${import.meta.env.VITE_BACKEND_URL}/submitdetails`, blob);
         localStorage.setItem("examSubmitted", "true");

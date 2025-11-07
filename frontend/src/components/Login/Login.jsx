@@ -12,6 +12,35 @@ function Login() {
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const checkAuthUser = async() => {
+            try {
+                const token = localStorage.getItem("token");
+                await axios.post(`${import.meta.env.VITE_BACKEND_URL}/authenticate`, {
+                    token
+                })
+
+                navigate("/tests");
+            }
+            catch(err) {
+                if(err.response?.status === 401) {
+                    localStorage.removeItem("token");
+                    return;
+                }
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+
+        checkAuthUser();
+    }, [])
+
+    if(loading) {
+        return <div>Authenticating User...</div>
+    }
 
     const handleLogin = async() => {
         try {
