@@ -37,7 +37,9 @@ function Signup() {
         setLoading(false);
       }
     }
-  })
+
+    checkAuthUser();
+  }, [])
 
   if(loading) {
     return <div>Authenticating User...</div>
