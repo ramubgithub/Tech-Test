@@ -28,17 +28,18 @@ function Signup() {
         setTimeout(() => navigate("/tests"), 0);
       }
       catch(err) {
+        if(err.response?.status === 401) {
+          localStorage.removeItem("token");
+          return;
+        }
+      }
+      finally {
         setLoading(false);
       }
     }
 
     checkAuthUser();
   }, [])
-
-  if(loading) {
-    return <div>Authenticating User...</div>
-  }
-  
 
   useEffect(() => {
     if(password && confirmPas && password !== confirmPas) {
@@ -82,6 +83,10 @@ function Signup() {
       }
       dispatch(showMessage({msg: "Internal server error...", isSuccess: false}));
     }
+  }
+
+  if(loading) {
+    return <div>Authenticating User...</div>
   }
 
   return (
