@@ -28,13 +28,6 @@ function Signup() {
         setTimeout(() => navigate("/tests"), 0);
       }
       catch(err) {
-        if(err.response?.status === 401) {
-          localStorage.removeItem("token");
-          return;
-        }
-        console.log(err);
-      }
-      finally {
         setLoading(false);
       }
     }
