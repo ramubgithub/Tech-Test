@@ -32,6 +32,7 @@ function Signup() {
           localStorage.removeItem("token");
           return;
         }
+        console.log(err);
       }
       finally {
         setLoading(false);

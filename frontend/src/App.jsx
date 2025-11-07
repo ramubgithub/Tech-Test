@@ -15,7 +15,7 @@ function App() {
       localStorage.removeItem("examTimer");
       localStorage.removeItem("examSubmitted");
     }
-  })
+  }, [])
 
   return (
     <Routes>
