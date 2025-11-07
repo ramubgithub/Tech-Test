@@ -6,7 +6,7 @@ function Results() {
   const [isActive, setIsActive] = useState("stack1");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -20,6 +20,9 @@ function Results() {
       }
       catch(err) {
         console.log("Internal server error...");
+      }
+      finally {
+        setLoading(false);
       }
     }
 
@@ -48,45 +51,46 @@ function Results() {
         </button>
       </div>
 
-      {data.length === 0 ? <div className="results-table"><h1>No Data Found</h1></div> : (
-        <>
-          <div className="results-table">
-            <div className="results-header">
-              <span>Attempt</span>
-              <span>Total Score</span>
-              <span>Your Score</span>
-            </div>
-            {currentItems.map((row, index) => (
-              <div className="results-row" key={index}>
-                <span>{row.attempt}</span>
-                <span>{row.totalScore}</span>
-                <span>{row.yourScore}</span>
+      {loading ? <div className="results-table"><p>Loading...</p></div> : (
+        data.length === 0 ? <div className="results-table"><h1>No Data Found</h1></div> : (
+          <>
+            <div className="results-table">
+              <div className="results-header">
+                <span>Attempt</span>
+                <span>Total Score</span>
+                <span>Your Score</span>
               </div>
-            ))}
-          </div>
+              {currentItems.map((row, index) => (
+                <div className="results-row" key={index}>
+                  <span>{row.attempt}</span>
+                  <span>{row.totalScore}</span>
+                  <span>{row.yourScore}</span>
+                </div>
+              ))}
+            </div>
 
-          <div className="pagination">
-            <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-            >
-              Prev
-            </button>
+            <div className="pagination">
+              <button
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+              >
+                Prev
+              </button>
 
-            <span style={{color: "white"}}>Page {currentPage} of {totalPages}</span>
+              <span style={{color: "white"}}>Page {currentPage} of {totalPages}</span>
 
-            <button
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-              }
-              disabled={currentPage === totalPages}
-            >
-              Next
-            </button>
-          </div>
-        </>
-      )
-      }
+              <button
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                }
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </div>
+          </>
+        )
+      )}
     </div>
   );
 }
