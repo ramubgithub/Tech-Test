@@ -8,11 +8,13 @@ function Results() {
   const itemsPerPage = 5;
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const email = localStorage.getItem("email");
 
   useEffect(() => {
     const getDetails = async() => {
       try {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/getdetails`, {
+          email,
           isActive
         });
         setData(response.data);
