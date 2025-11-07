@@ -71,7 +71,7 @@ const authenticateUser = (req, res) => {
 }
 
 const ExamSubmission = async (req, res) => {
-    const { stackId, answers } = req.body;
+    const { email, stackId, answers } = req.body;
 
     let totalScore = 0, yourScore = 0;
     answers.forEach(tech => {
@@ -84,10 +84,10 @@ const ExamSubmission = async (req, res) => {
     })
 
     try {
-        const attempt = await SubmittedData.find({stackId}) || [];
-        const newSubmit = new SubmittedData({stackId, attempt: (attempt.length + 1), totalScore, yourScore});
+        const attempt = (await SubmittedData.find({email})).filter((data) => data.stackId === stackId) || [];
+        const newSubmit = new SubmittedData({email, stackId, attempt: (attempt.length + 1), totalScore, yourScore});
         await newSubmit.save();
-        res.status(201).json({message: "Exam details added successfully!", data: {stackId, attempt: (attempt.length + 1), totalScore, yourScore}});
+        res.status(201).json({message: "Exam details added successfully!", data: {email, stackId, attempt: (attempt.length + 1), totalScore, yourScore}});
     }
     catch(err) {
         res.status(500).json({message: "Internal server error..."});
@@ -96,11 +96,11 @@ const ExamSubmission = async (req, res) => {
 
 GetSubmitData = async (req, res) => {
   try {
-    const { isActive } = req.body;
+    const { email, isActive } = req.body;
 
     const stackId = isActive === "stack1" ? 1 : 2;
 
-    const results = await SubmittedData.find({ stackId }).sort({yourScore: -1});
+    const results = await (await SubmittedData.find({ email })).filter((data) => data.stackId === stackId).sort({yourScore: -1});
     res.json(results);
   } catch (err) {
     console.error("Error fetching results:", err);

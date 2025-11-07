@@ -72,6 +72,7 @@ function Home() {
     }
 
     const handleLogout = async() => {
+      localStorage.removeItem("email");
       localStorage.removeItem("token");
       dispatch(showMsg({msg: "Successfully Logged Out!", isSuccess: true}));
       setTimeout(() => {

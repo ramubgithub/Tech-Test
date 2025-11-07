@@ -60,6 +60,7 @@ function Login() {
                     withCredentials: true
                 }
             );
+            localStorage.setItem("email", email);
             localStorage.setItem("token", response.data.token);
 
             dispatch(showMsg({msg: "Login successful!", isSuccess: true}));

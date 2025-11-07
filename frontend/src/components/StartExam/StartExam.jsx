@@ -12,6 +12,7 @@ function StartExam() {
 
   const [loading, setLoading] = useState(true);
   const [authorized, setAuthorized] = useState(false);
+  const email = localStorage.getItem("email");
 
   useEffect(() => {
       const checkAuthUser = async() => {
@@ -42,21 +43,21 @@ function StartExam() {
 
     
     useEffect(() => {
-    if(localStorage.getItem("examSubmitted") === "true") {
-      localStorage.removeItem("examSubmitted");
-      dispatch(resetTimer());
-      dispatch(resetExam());
-      localStorage.removeItem("examState");
-      localStorage.removeItem("examTimer");
-      dispatch(showMessage({msg: "Answers submitted successfully!", isSuccess: true}));
-      navigate("/tests");
-    }
+      if(localStorage.getItem("examSubmitted") === "true") {
+        localStorage.removeItem("examSubmitted");
+        dispatch(resetTimer());
+        dispatch(resetExam());
+        localStorage.removeItem("examState");
+        localStorage.removeItem("examTimer");
+        dispatch(showMessage({msg: "Answers submitted successfully!", isSuccess: true}));
+        navigate("/tests");
+      }
   }, [navigate]);
   
   const submitExam = async () => {
     try{
       await axios.post(`${import.meta.env.VITE_BACKEND_URL}/submitdetails`,
-          {stackId, answers},
+          {email, stackId, answers},
           {headers: {"Content-Type":"application/json"}}
         );
         dispatch(showMessage({msg: "Answers submitted successfully!", isSuccess: true}));
@@ -74,6 +75,7 @@ function StartExam() {
     useEffect(() => {
       const handleBeforeUnload = () => {
         const payload = {
+          email: email,
           stackId: stackId,
           answers: answers
         };

@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model("User", UserSchema);
 
 const SubmittedDataExam = new mongoose.Schema({
+    email: String,
     stackId: Number,
     attempt: Number,
     totalScore: Number,
