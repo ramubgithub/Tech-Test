@@ -94,13 +94,13 @@ const ExamSubmission = async (req, res) => {
     }
 }
 
-GetSubmitData = async (req, res) => {
+const GetSubmitData = async (req, res) => {
   try {
     const { email, isActive } = req.body;
 
     const stackId = isActive === "stack1" ? 1 : 2;
 
-    const results = await (await SubmittedData.find({ email })).filter((data) => data.stackId === stackId).sort({yourScore: -1});
+    const results = await SubmittedData.find({ email, stackId }).sort({yourScore: -1});
     res.json(results);
   } catch (err) {
     console.error("Error fetching results:", err);
