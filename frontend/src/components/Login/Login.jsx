@@ -14,7 +14,7 @@ function Login() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+   useEffect(() => {
         const checkAuthUser = async() => {
             try {
                 const token = localStorage.getItem("token");
